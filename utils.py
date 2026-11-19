@@ -104,3 +104,7 @@ async def punish(chat_id: int, user, reason: str, mute_seconds: int = 0, warn: b
     text = "\n".join(lines)
     await bot.send_message(chat_id, text)
     await log_action(text)
+    from rules import RULES
+
+def get_rules(chat_id: int) -> str:
+    return db.get_setting(chat_id, "rules") or RULES
